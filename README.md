@@ -74,3 +74,10 @@ Generating Jakarta REST resources with Panache
 Easily start your REST Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+
+### O que está rodando:
+
+API REST em http://localhost:8080
+PostgreSQL 18 via Dev Services (container Docker na porta 32769)
+Live Coding ativado — qualquer mudança no código recarrega automaticamente
