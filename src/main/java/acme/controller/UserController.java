@@ -1,5 +1,7 @@
 package acme.controller;
 
+import java.util.UUID;
+
 import acme.domain.Users;
 import acme.service.UserService;
 import jakarta.transaction.Transactional;
@@ -8,6 +10,7 @@ import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
@@ -39,6 +42,12 @@ public class UserController {
 
       var users = userService.findAllUsers(page, size);
       return Response.ok(users).build();
+  }
+
+  @GET
+  @Path("/{id}")
+  public Response findUserById(@PathParam("id") UUID userId) {
+    return Response.ok(userService.findUserById(userId)).build();
   }
 
 }
