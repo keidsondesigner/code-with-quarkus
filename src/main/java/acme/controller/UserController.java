@@ -4,10 +4,12 @@ import acme.domain.Users;
 import acme.service.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -30,8 +32,13 @@ public class UserController {
   }
 
   @GET
-  public String getUsers() {
-    return "List of users";
+  public Response findAllUsers(
+      @QueryParam("page") @DefaultValue("0") Integer page, 
+      @QueryParam("size") @DefaultValue("10") Integer size
+    ) {
+
+      var users = userService.findAllUsers(page, size);
+      return Response.ok(users).build();
   }
 
 }
